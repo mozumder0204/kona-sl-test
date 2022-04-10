@@ -1,0 +1,36 @@
+<div style="width: 100%; display: flex; flex-direction: row">
+  <div style="width: 60%">
+    <img
+      mat-card-image
+      [src]="urlService.finalPath(movieDetails?.backdrop_path)"
+      alt="Photo of {{ movieDetails.original_title }}"
+    />
+  </div>
+
+  <div style="width: 40%">
+    <mat-card-title>{{ movieDetails?.original_title }}</mat-card-title>
+    <mat-card-subtitle>{{ movieDetails?.overview }}</mat-card-subtitle>
+    <p>Overall Rating</p>
+    <p>
+      <mat-card-content
+        ><mat-icon>stars</mat-icon
+        >{{ movieDetails?.vote_average }}</mat-card-content
+      >
+    </p>
+    <p>Your ratings</p>
+    <p>
+      <ng-container *ngIf="movieDetails?.my_rating; else elseTemplate">
+        <mat-card-content
+          ><mat-icon>stars</mat-icon
+          >{{ movieDetails?.my_rating }}</mat-card-content
+        >
+      </ng-container>
+      <ng-template #elseTemplate>
+        <mat-card-content
+          ><mat-icon>stars</mat-icon>
+          <span class="rateStyle" (click)="OnClickRate()"> Rate </span>
+        </mat-card-content>
+      </ng-template>
+    </p>
+  </div>
+</div>

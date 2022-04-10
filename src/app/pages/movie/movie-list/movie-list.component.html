@@ -1,0 +1,60 @@
+<nav
+  class="sort-dropdown"
+  matSort
+  matSortActive="title"
+  matSortDirection="asc"
+  matSortDisableClear="true"
+  (matSortChange)="sortData($event)"
+>
+  <button mat-raised-button color="primary" [matMenuTriggerFor]="sortMenu">
+    Sort By
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+
+  <mat-menu #sortMenu="matMenu">
+    <div mat-menu-item>
+      <div mat-sort-header="name">Name</div>
+    </div>
+    <div mat-menu-item>
+      <div mat-sort-header="popularity">Popularity</div>
+    </div>
+    <div mat-menu-item>
+      <div mat-sort-header="ratings">Ratings</div>
+    </div>
+  </mat-menu>
+</nav>
+
+<div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column">
+  <div
+    fxLayout="row wrap"
+    fxLayoutGap="10px"
+    fxFlex="100%"
+    fxFlex.sm="50%"
+    fxLayout.lt-sm="column"
+    fxFlex.xs="100%"
+    fxLayoutAlign="flex-start"
+  >
+    <mat-card
+      *ngFor="let obj of results"
+      fxFlex="0 1 calc(20% - 10px)"
+      fxFlex.lt-md="0 1 calc(25% - 10px)"
+      fxFlex.lt-sm="50%"
+      fxFlex.xs="50%"
+      appearance="fill"
+      class="pp"
+      [routerLink]="['/details', obj.id]"
+    >
+      <img
+        mat-card-image
+        [src]="urlService.finalPath(obj.backdrop_path)"
+        alt="Photo of {{ obj.original_title }}"
+      />
+      <mat-card-content>
+        <p>
+          {{ obj?.original_title }}
+        </p>
+        <mat-icon>stars</mat-icon> {{ obj?.vote_average }}
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="auth-header" *ngIf="!authInfo?.isAuthenticated"></div>
+<mat-toolbar class="header" *ngIf="isLoggedIn$ | async">
+  <mat-toolbar-row>
+    <img class="logo" src="../../assets/images/kona-sl.png" alt="logo" />
+    <h1 class="app-name mt-3"></h1>
+    <span class="spacer"></span>
+    <avatar
+      [imageSrc]="defaultsrc"
+      [matMenuTriggerFor]="menu"
+      class="mt-3"
+      [size]="35"
+    ></avatar>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>{{ authInfo?.userInformation?.username }}</button>
+      <button mat-menu-item (click)="onLogOut()">Logout</button>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-card>
+  <mat-progress-bar
+    class="card-header-progress"
+    *ngIf="isLoading"
+    mode="indeterminate"
+  >
+  </mat-progress-bar>
+  <mat-card-content>
+    <router-outlet></router-outlet>
+  </mat-card-content>
+</mat-card>
