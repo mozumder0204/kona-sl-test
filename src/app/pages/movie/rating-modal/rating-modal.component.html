@@ -4,3 +4,10 @@
   [color]="starColor"
   (ratingUpdated)="onRatingChanged($event)"
 ></star-rating>
+
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="end end">
+  <button type="button" mat-raised-button [mat-dialog-close]>Cancel</button>
+  <button class="mat-raised-button mat-primary" type="submit" (click)="close()">
+    Submit
+  </button>
+</div>

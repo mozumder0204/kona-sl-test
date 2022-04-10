@@ -48,7 +48,7 @@ export class MovieDetailsComponent implements OnInit {
       width: '400px',
     });
     dialogRef.afterClosed().subscribe((result: any) => {
-      if (result) {
+      if (result && result != 0) {
         const index = this.movieList.findIndex(
           (cs: any) => cs.id == this.movieId
         );
